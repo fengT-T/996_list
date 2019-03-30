@@ -1,15 +1,15 @@
 <template>
   <div class="list">
     <div class="head">
-      <span style="width: 15%">排名</span>
+      <span style="width: 12%">排名</span>
       <span style="width: 70%">标题</span>
-      <span style="width: 15%">赞同数</span>
+      <span style="width: 18%">赞同数</span>
     </div>
     <div class="body">
       <div class="line" v-for="(item, index) in list" :key="item.id">
         <div style="width: 15%">{{index + 1}}</div>
         <div style="width: 70%">
-          <a :href="url + '/' + item.id" target="blank">{{item.name | clearDesc}}</a>
+          <a :href="url + '?page=' + Math.ceil(index / 25)" target="blank">{{item.name | clearDesc}}</a>
         </div>
         <div style="width: 15%">{{item.score}}</div>
       </div>
