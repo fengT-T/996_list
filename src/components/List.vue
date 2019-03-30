@@ -1,9 +1,9 @@
 <template>
   <div class="list">
     <div class="head">
-      <span style="width: 12%">排名</span>
-      <span style="width: 70%">标题</span>
-      <span style="width: 18%">赞同数</span>
+      <span style="width: 20%">排名</span>
+      <span style="width: 60%">标题</span>
+      <span style="width: 20%">赞同数</span>
     </div>
     <div class="body">
       <div class="line" v-for="(item, index) in list" :key="item.id">
