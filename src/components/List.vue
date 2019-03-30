@@ -7,7 +7,7 @@
     </div>
     <div class="body">
       <div class="line" v-for="(item, index) in list" :key="item.id">
-        <div style="width: 15%">{{index}}</div>
+        <div style="width: 15%">{{index + 1}}</div>
         <div style="width: 70%">
           <a :href="url + '/' + item.id" target="blank">{{item.name | clearDesc}}</a>
         </div>
