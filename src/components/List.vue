@@ -40,7 +40,7 @@ export default {
     }
   },
   async mounted() {
-    this.list = (await fetchData(this.url)).features
+    this.list = (await fetchData(this.url)).default.features
     this.loading = false
   }
 }
