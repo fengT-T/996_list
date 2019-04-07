@@ -10,7 +10,7 @@
         <p v-html="item.evidence"></p>
       </div>
       <div class="card-footer">
-        <router-link class="c-hand" :to=" { path: `/detail`, query: item}">更多</router-link>
+        <a class="c-hand" target="blank" :href="`https://utteranc.es/utterances.html?src=https://utteranc.es/client.js&repo=fengT-T/996_comment&issue-term=${item.name}&crossorigin=anonymous&theme=github-light&async=&url=https://fengt-t.github.io/996_list/&origin=https://fengt-t.github.io/996_list/&pathname=996_list&title=996List&description=${item.name}&og:title=996List`">评论</a>
         <span class="text-gray">{{item.time}}</span>
       </div>
     </div>
@@ -58,10 +58,6 @@ export default {
     margin: 20px;
     border-radius: 6px;
     transition: all 250ms cubic-bezier(.02, .01, .47, 1);
-    .card-body {
-      max-height: 200px;
-      overflow: hidden;
-    }
     .card-footer {
       display: flex;
       align-items: center;
@@ -73,7 +69,6 @@ export default {
       transition-delay: 0s !important;
     }
   }
- 
 }
 .loading {
   margin-top: 15%;
