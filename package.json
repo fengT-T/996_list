@@ -7,7 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "gitment": "0.0.3",
+    "markdown-it": "^8.4.2",
+    "spectre.css": "^0.5.8",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

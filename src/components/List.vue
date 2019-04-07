@@ -1,24 +1,25 @@
 <template>
   <div class="list">
-    <div class="head">
-      <span style="width: 20%">排名</span>
-      <span style="width: 60%">标题</span>
-      <span style="width: 20%">赞同数</span>
-    </div>
-    <div class="body">
-      <div class="line" v-for="(item, index) in list" :key="item.id">
-        <div style="width: 15%">{{index + 1}}</div>
-        <div style="width: 70%">
-          <a :href="url + '?page=' + Math.ceil(index / 25)" target="blank">{{item.name | clearDesc}}</a>
-        </div>
-        <div style="width: 15%">{{item.score}}</div>
+    <div class="card box-shadow" v-for="(item, index) in list" :key="index">
+      <div class="card-header">
+        <div class="card-title h5">{{item.name}}</div>
+        <div class="card-subtitle text-gray">{{item.postion}}	</div>
+      </div>
+      <div class="card-body">
+        <p>制度描述： {{ item.rule}}</p>
+        <p v-html="item.evidence"></p>
+      </div>
+      <div class="card-footer">
+        <router-link class="c-hand" :to=" { path: `/detail`, query: item}">更多</router-link>
+        <span class="text-gray">{{item.time}}</span>
       </div>
     </div>
-    <div class="loading" v-show="loading"></div>
+    <div v-show="loading" class="loading loading-lg"></div>
   </div>
 </template>
 <script>
 import fetchData from '../api/fetchData'
+import parseList from '../api/dataParse'
 
 export default {
   props: {
@@ -40,7 +41,8 @@ export default {
     }
   },
   async mounted() {
-    this.list = (await fetchData(this.url)).default.features
+    const text = (await fetchData(this.url))
+    this.list = parseList(text)
     this.loading = false
   }
 }
@@ -48,55 +50,32 @@ export default {
 <style lang="less">
 .list {
   display: flex;
-  box-shadow: 0 0 30px 0 rgba(0,0,0,.05);
-  border-radius: 8px;
-  max-width: 1000px;
   flex-wrap: wrap;
-  margin: 0 auto;
-  .progress {
-    transition: all .5s ease;
-    height: 2px;
-    background-color: #5b5777;
-  }
-  .head {
-    width: 100%;
-    display: flex;
-    font-size: 20px;
-    padding: 20px 0px;
-  }
-  .body {
-    width: 100%;
-    .line {
-      color: #5b5777;
+  justify-content: center;
+  .card {
+    width: 300px;
+    border: none;
+    margin: 20px;
+    border-radius: 6px;
+    transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+    .card-body {
+      max-height: 200px;
+      overflow: hidden;
+    }
+    .card-footer {
       display: flex;
-      width: 100%;
-      padding: 8px 0px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &:hover {
+      box-shadow: 0px 1rem 2rem 0px rgba(48, 55, 66, 0.15);
+      transform: translate(0,-5px);
+      transition-delay: 0s !important;
     }
   }
+ 
 }
 .loading {
-    animation: loading .5s infinite linear;
-    border: .1rem solid #5755d9;
-    border-radius: 50%;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    content: "";
-    display: block;
-    height: 1.6rem;
-    left: 50%;
-    margin-left: -.4rem;
-    margin-top: -.4rem;
-    position: absolute;
-    top: 50%;
-    width: 1.6rem;
-    z-index: 1;
-}
-@keyframes loading{
-  0% {
-    transform:rotate(0)
-  }
-  100% {
-    transform:rotate(360deg)
-  }
+  margin-top: 15%;
 }
 </style>
