@@ -9,10 +9,10 @@
       </li>
     </ul>
     <v-list
-      url="https://raw.githubusercontent.com/996icu/996.ICU/master/blacklist/blacklist.md"
+      url="https://raw.githubusercontent.com/996icu/996.ICU/master/blacklist/README.md"
       v-show="select === '996'"></v-list>
     <v-list
-      url="https://raw.githubusercontent.com/996icu/996.ICU/master/whitelist/whitelist.md"
+      url="https://raw.githubusercontent.com/996icu/996.ICU/master/whitelist/README.md"
       v-show="select === '955'"></v-list>
   </div>
 </template>
