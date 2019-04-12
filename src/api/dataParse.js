@@ -8,7 +8,7 @@ export class Company {
     Object.assign(this, {
       postion,  nameMd, time, rule, evidenceMd,
       name: nameMd.match(/\[([\s\S]+?)\]/)[1], // 提取 [华为] 中的 华为名字
-      evidence: md.render(evidenceMd)
+      evidence: md.render(evidenceMd || '') // evidenceMd 可能为 undefined
     })
   }
 }
