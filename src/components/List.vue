@@ -43,6 +43,7 @@ export default {
   async mounted() {
     const text = (await fetchData(this.url))
     this.list = parseList(text)
+    this.list.map(item => {item.evidence = item.evidence.replace(/&lt;/g, "<").replace(/&gt;/g, ">")})
     this.loading = false
   }
 }
