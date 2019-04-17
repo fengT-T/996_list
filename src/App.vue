@@ -9,22 +9,22 @@
       </li>
     </ul>
     <v-list
-      url="https://raw.githubusercontent.com/996icu/996.ICU/master/blacklist/README.md"
-      v-show="select === '996'"></v-list>
-    <v-list
-      url="https://raw.githubusercontent.com/996icu/996.ICU/master/whitelist/README.md"
-      v-show="select === '955'"></v-list>
+      v-for="list in apiList" :key="list.name"
+      :companyList="list"
+      v-show="select === list.name"></v-list>
   </div>
 </template>
 
 <script>
 import List from './components/List.vue'
+import apiList from './api'
 
 export default {
   name: 'home',
   data () {
     return {
-      select: '996'
+      select: '996',
+      apiList
     }
   },
   components: {

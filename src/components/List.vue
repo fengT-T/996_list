@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <div class="card box-shadow" v-for="(item, index) in list" :key="index">
+    <div class="card box-shadow" v-for="(item, index) in companyList.list" :key="index">
       <div class="card-header">
         <div class="card-title h5">{{item.name}}</div>
         <div class="card-subtitle text-gray">{{item.postion}}	</div>
@@ -14,36 +14,25 @@
         <span class="text-gray">{{item.time}}</span>
       </div>
     </div>
-    <div v-show="loading" class="loading loading-lg"></div>
   </div>
 </template>
 <script>
-import fetchData from '../api/fetchData'
-import parseList from '../api/dataParse'
+import { CompanyList } from  '../api/schema'
 
 export default {
   props: {
-    url: {
-      type: String,
+    companyList: {
+      type: CompanyList,
       required: true,
     }
   },
   data () {
     return {
-      list: [],
-      progess: 0,
       loading: true
     }
   },
-  filters: {
-    clearDesc(value) {
-      return value.replace(/[\（\(][\s\S]*?[\）\)]/g, '')
-    }
-  },
   async mounted() {
-    const text = (await fetchData(this.url))
-    this.list = parseList(text)
-    this.list.map(item => {item.evidence = item.evidence.replace(/&lt;/g, "<").replace(/&gt;/g, ">")})
+    await this.companyList.getData()
     this.loading = false
   }
 }
@@ -59,6 +48,7 @@ export default {
     margin: 20px;
     border-radius: 6px;
     transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+    word-break: break-all;
     .card-footer {
       display: flex;
       align-items: center;
