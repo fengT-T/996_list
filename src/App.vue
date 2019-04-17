@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <ul class="tab tab-block">
-      <li class="tab-item" :class="{'active': select === '996'}">
-        <a @click="select = '996'" >996</a>
-      </li>
-      <li class="tab-item" :class="{'active': select === '955'}">
-        <a @click="select = '955'">955</a>
+      <li class="tab-item"
+        :class="{'active': select === list.name}"
+        v-for="list in apiList"
+        :key="list.name">
+        <a @click="select = list.name" >{{list.name}}</a>
       </li>
     </ul>
     <v-list
