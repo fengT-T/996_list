@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "spectre.css": "^0.5.8",
     "vue": "^2.6.6"
   },
